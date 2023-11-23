@@ -7,32 +7,35 @@ import java.util.Scanner;
 /**
  * Description of the class
  *
- * @author
+ * @author Sebastian Vitiello
  * @author
  * @version     1.0
  */
 public class ListaEnvios {
     private Envio[] envios;
+    private int ocupacion=0;
     /**
      * TODO: Constructor de la clase para inicializar la lista a una capacidad determinada
      *
      * @param capacidad
      */
     public ListaEnvios(int capacidad) {
-		
-		
+		envios = new Envio[capacidad];
     }
     // TODO: Devuelve el número de envíos que hay en la lista
     public int getOcupacion() {
-
+        return ocupacion;
     }
     // TODO: ¿Está llena la lista de envíos?
     public boolean estaLlena() {
-
+        if (ocupacion==envios.length){
+            return true;
+        }
+        return false;
     }
 	//TODO: Devuelve el envio dado un indice
     public Envio getEnvio(int i) {
-        return null;
+        return envios[i];
     }
 
     /**
@@ -41,7 +44,11 @@ public class ListaEnvios {
      * @return true en caso de que se añada correctamente, false en caso de lista llena o error
      */
     public boolean insertarEnvio(Envio envio) {
-
+        if (!estaLlena()){
+            envios[ocupacion]=envio;
+            ocupacion++;
+            return true;
+        }
         return false;
     }
 
@@ -51,8 +58,10 @@ public class ListaEnvios {
      * @return el envio que encontramos o null si no existe
      */
     public Envio buscarEnvio(String localizador) {
-
-
+        for (int i=0;i<ocupacion;i++){
+            if (envios[i].getLocalizador()==localizador)
+                return envios[i];
+        }
         return null;
     }
 
@@ -65,7 +74,6 @@ public class ListaEnvios {
      */
     public Envio buscarEnvio(String idPorte, int fila, int columna) {
 
-
         return null;
     }
 
@@ -75,7 +83,15 @@ public class ListaEnvios {
      * @return True si se ha borrado correctamente, false en cualquier otro caso
      */
     public boolean eliminarEnvio (String localizador) {
-
+        for (int i=0;i<ocupacion;i++){
+            if (envios[i].getLocalizador()==localizador){
+                for (int j = i; j < ocupacion; j++) {
+                    envios[i - 1] = envios[i];
+                }
+                ocupacion--;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -84,7 +100,8 @@ public class ListaEnvios {
      * en el enunciado
      */
     public void listarEnvios() {
-
+        for (int i=0;i<ocupacion;i++)
+            System.out.println(envios[i].toString());
     }
 
     /**
@@ -96,14 +113,14 @@ public class ListaEnvios {
      * @return
      */
     public Envio seleccionarEnvio(Scanner teclado, String mensaje) {
-        Envio envio = null;
-
-
-        return envio;
+        System.out.println(mensaje);
+        String localizador = teclado.next().toUpperCase();
+        for (int i=0;i<ocupacion;i++){
+            if (envios[i].getLocalizador()==localizador)
+                return envios[i];
+        }
+        return null;
     }
-
-
-
     /**
      * TODO: Añade los Envios al final de un fichero CSV, SIN SOBREESCRIBIR la información
      * @param fichero
@@ -112,6 +129,7 @@ public class ListaEnvios {
     public boolean aniadirEnviosCsv(String fichero) {
         PrintWriter pw = null;
         try {
+            pw =new PrintWriter(fichero);
 
             return true;
         } catch (Exception e) {
