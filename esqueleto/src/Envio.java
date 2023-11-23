@@ -1,14 +1,13 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
 /**
  * Description of the class
  *
+ * @author Sebastian Vitiello
  * @author
- * @author
- * @version     1.0
+ * @version     1.1
  */
 public class Envio {
 
@@ -61,7 +60,7 @@ public class Envio {
     }
     //TODO: Texto que debe generar: Envío PM1111AAAABBBBC para Porte PM0066 de GGT M5 (01/01/2023 08:15:00) a CID M1 (01/01/2024 11:00:05) en hueco 6C por 13424,56 SSD
     public String toString() {
-
+        return ("Envío "+localizador+" para Porte "+porte.toString());
     }
     // TODO: Cancela este envío, eliminándolo de la lista de envíos del porte y del cliente correspondiente
     public boolean cancelar() {
@@ -86,17 +85,24 @@ public class Envio {
      *     Precio: 13424,56 SSD
      */
     public boolean generarFactura(String fichero) {
+        DataOutputStream salida = null;
         try {
-
-
-
-
-
-
-
-
+            salida = new DataOutputStream(new FileOutputStream(fichero));
+            salida.writeUTF("-----------------------------------------------------");
+            salida.writeUTF("\n--------- Factura del envío "+localizador+" ---------");
+            salida.writeUTF("\n-----------------------------------------------------");
+            salida.writeUTF("\nPorte: "+porte.getID());
+            salida.writeUTF("\nOrigen: "+porte.getMuelleOrigen());
+            salida.writeUTF("\nDestino: "+porte.getDestino());
+            salida.writeUTF("\nSalida: "+porte.getSalida());
+            salida.writeUTF("\nLegada: "+porte.getLlegada());
+            salida.writeUTF("\nCliente: "+cliente.getApellidos()+" "+cliente.getNombre()+", "+cliente.getEmail());
+            salida.writeUTF("\nHueco: "+)
+            salida.writeUTF("\nPrecio: "+precio+" SSD");
             return true;
         } catch (FileNotFoundException e) {
+            return false;
+        } catch (IOException e){
             return false;
         }
     }
@@ -105,7 +111,7 @@ public class Envio {
 
     /**
      *	TODO: Genera un localizador de envío. Este consistirá en una cadena de 15 caracteres, de los cuales los seis
-	 *   primeros será el ID del porte asociado y los 9 siguientes serán letras mayúsculas aleatorias. Ejemplo: PM0123ABCD
+     *   primeros será el ID del porte asociado y los 9 siguientes serán letras mayúsculas aleatorias. Ejemplo: PM0123ABCD
      *   NOTA: Usar el objeto rand pasado como argumento para la parte aleatoria.
      * @param rand
      * @param idPorte
