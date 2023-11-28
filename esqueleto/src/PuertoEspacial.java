@@ -83,6 +83,6 @@ public class PuertoEspacial {
      * @return ejemplo -> "Gaia Galactic Terminal (GGT)"
      */
     public String toStringSimple() {
-        return " ";
+        return nombre+" ("+codigo+")";
     }
 }

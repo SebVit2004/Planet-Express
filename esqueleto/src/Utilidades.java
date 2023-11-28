@@ -136,7 +136,8 @@ public class Utilidades {
                 continuar=true;
             else if(mes==2&&dia<=28)
                 continuar=true;
-            if (hora>24||minuto>60||)
+            if (hora>24||minuto>60||segundo>60)
+                continuar=false;
         }while (!continuar);
 
         return new Fecha(dia, mes, anio, hora, minuto, segundo);
