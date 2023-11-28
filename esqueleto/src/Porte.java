@@ -123,7 +123,7 @@ public class Porte {
      *  Cidonia(CID) M1 (01/01/2024 11:00:05) en Planet Express One(EP-245732X) por 13424,56 SSD, huecos libres: 10"
      */
     public String toString() {
-        return "";
+        return "Porte "+id+" de "+origen+" "+salida.toString()+" a "+destino+" "+llegada.toString();
     }
 
 
@@ -132,7 +132,7 @@ public class Porte {
      * @return ejemplo del formato -> "Porte PM0066 de GGT M5 (01/01/2023 08:15:00) a CID M1 (01/01/2024 11:00:05)"
      */
     public String toStringSimple() {
-        return "";
+        return "Porte "+id+" de "+origen+" "+salida.toString()+" a "+destino+" "+llegada.toString();
     }
 
 

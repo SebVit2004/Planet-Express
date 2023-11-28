@@ -71,7 +71,9 @@ public class PuertoEspacial {
      * @return ejemplo -> "Gaia Galactic Terminal(GGT), en (1.0 90.0 0.0), con 8 muelles" (Radio, Azimut, Polar)
      */
     public String toString() {
-        return " ";
+        return nombre+"("+codigo+"), en ("
+                +(radio*Math.sin(azimut)*Math.cos(polar))+" "+(radio*Math.sin(azimut)*Math.cos(polar))+" "+(radio*Math.sin(azimut))
+                +") con "+numMuelles+" muelles ("+radio+", ";
     }
 
     /**
@@ -79,6 +81,6 @@ public class PuertoEspacial {
      * @return ejemplo -> "Gaia Galactic Terminal (GGT)"
      */
     public String toStringSimple() {
-        return " ";
+        return nombre+" ("+codigo+")";
     }
 }
