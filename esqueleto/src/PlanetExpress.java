@@ -29,11 +29,15 @@ public class PlanetExpress {
      * @param maxEnviosPorCliente Máximo número de envíos por cliente.
      */
     public PlanetExpress(int maxPuertosEspaciales, int maxNaves, int maxPortes, int maxClientes, int maxEnviosPorCliente) {
-
-
-
-
-
+        this.maxPuertosEspaciales=maxPuertosEspaciales;
+        this.maxNaves=maxNaves;
+        this.maxPortes=maxPortes;
+        this.maxClientes=maxClientes;
+        this.maxEnviosPorCliente=maxEnviosPorCliente;
+        listaPuertosEspaciales = new ListaPuertosEspaciales(maxPuertosEspaciales);
+        listaNaves = new ListaNaves(maxNaves);
+        listaClientes = new ListaClientes(maxClientes);
+        listaPortes = new ListaPortes(maxPortes);
     }
 
 
@@ -88,10 +92,12 @@ public class PlanetExpress {
      * @param teclado
      * @return
      */
-    public ListaPortes buscarPorte(Scanner teclado) {
-
-
-
+    public ListaPortes buscarPorte(Scanner sc) {
+        System.out.print("\nInserte codigo origen: ");
+        String codigoOrigen = sc.next();
+        System.out.print("\nInserte codigo destino: ");
+        String codigoDestino = sc.next();
+        Fecha fecha = Utilidades.leerFecha(sc,"\nInserte fecha: ");
         return listaPortes.buscarPortes(codigoOrigen, codigoDestino, fecha);
     }
 
