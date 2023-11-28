@@ -127,7 +127,18 @@ public class PlanetExpress {
      * @return opción seleccionada
      */
     public static int menu(Scanner teclado) {
-
+        System.out.println("1. Alta de Porte\n" +
+                "2. Alta de Cliente\n" +
+                "3. Buscar Porte\n" +
+                "4. Mostrar envíos de un cliente\n" +
+                "5. Generar lista de envíos\n" +
+                "0. Salir\n");
+        int opcion;
+        do {
+            System.out.print("Seleccione opcion: ");
+            opcion= teclado.nextInt();
+        }while (opcion>5||opcion<0);
+        return opcion;
     }
 
     /**
