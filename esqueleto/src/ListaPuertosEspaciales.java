@@ -4,12 +4,13 @@ import java.util.Scanner;
 /**
  * Description of the class
  *
- * @author
+ * @author Sebastian Vitiello
  * @author
  * @version     1.0
  */
 public class ListaPuertosEspaciales {
     private PuertoEspacial[] lista;
+    private int ocupacion=0;
 
     /**
      * TODO: Constructor de la clase para inicializar la lista a una capacidad determinada
@@ -17,20 +18,21 @@ public class ListaPuertosEspaciales {
      * @param capacidad
      */
     public ListaPuertosEspaciales(int capacidad) {
-        
-		
+        lista = new PuertoEspacial[capacidad];
     }
     // TODO: Devuelve el número de puertos espaciales que hay en la lista
     public int getOcupacion() {
-
+        return ocupacion;
     }
     // TODO: ¿Está llena la lista?
     public boolean estaLlena() {
-
+        if (ocupacion<lista.length)
+            return false;
+        return true;
     }
 	// TODO: Devuelve un puerto espacial dado un indice
     public PuertoEspacial getPuertoEspacial(int i) {
-        return null;
+        return lista[i];
     }
 
     /**
@@ -39,7 +41,11 @@ public class ListaPuertosEspaciales {
      * @return true en caso de que se añada correctamente, false en caso de lista llena o error
      */
     public boolean insertarPuertoEspacial(PuertoEspacial puertoEspacial) {
-
+        if (!estaLlena()){
+            lista[ocupacion]=puertoEspacial;
+            ocupacion++;
+            return true;
+        }
         return false;
     }
 
@@ -49,7 +55,9 @@ public class ListaPuertosEspaciales {
      * @return Puerto espacial que encontramos o null si no existe
      */
     public PuertoEspacial buscarPuertoEspacial(String codigo) {
-
+        for (int i=0;i<ocupacion;i++)
+            if (codigo==lista[i].getCodigo())
+                return lista[i];
         return null;
     }
 
@@ -62,10 +70,8 @@ public class ListaPuertosEspaciales {
      * @return
      */
     public PuertoEspacial seleccionarPuertoEspacial(Scanner teclado, String mensaje) {
-        PuertoEspacial puertoEspacial = null;
-
-
-        return puertoEspacial;
+        System.out.println(mensaje);
+        return buscarPuertoEspacial(teclado.next());
     }
 
     /**
