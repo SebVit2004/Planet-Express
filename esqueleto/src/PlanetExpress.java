@@ -29,11 +29,11 @@ public class PlanetExpress {
      * @param maxEnviosPorCliente Máximo número de envíos por cliente.
      */
     public PlanetExpress(int maxPuertosEspaciales, int maxNaves, int maxPortes, int maxClientes, int maxEnviosPorCliente) {
-
-
-
-
-
+        this.maxPuertosEspaciales=maxPuertosEspaciales;
+        this.maxNaves=maxNaves;
+        this.maxPortes=maxPortes;
+        this.maxClientes=maxClientes;
+        this.maxEnviosPorCliente=maxEnviosPorCliente;
     }
 
 
