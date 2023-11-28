@@ -1,7 +1,7 @@
 /**
  * Description of the class
  *
- * @author
+ * @author Sebastian Vitiello
  * @author
  * @version     1.0
  */

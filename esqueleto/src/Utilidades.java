@@ -3,7 +3,7 @@ import java.util.Scanner;
 /**
  * Description of the class
  *
- * @author
+ * @author Sebastian Vitiello
  * @author
  * @version     1.0
  */
@@ -19,8 +19,10 @@ public class Utilidades {
      */
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
         int numero;
-
-
+        do {
+            System.out.println(mensaje);
+            numero = teclado.nextInt();
+        }while (numero<minimo||numero>maximo);
         return numero;
     }
 
@@ -34,8 +36,10 @@ public class Utilidades {
      */
     public static long leerNumero(Scanner teclado, String mensaje, long minimo, long maximo) {
         long numero;
-
-
+        do {
+            System.out.println(mensaje);
+            numero = teclado.nextInt();
+        }while (numero<minimo||numero>maximo);
         return numero;
     }
 
@@ -49,7 +53,10 @@ public class Utilidades {
      */
     public static double leerNumero(Scanner teclado, String mensaje, double minimo, double maximo) {
         double numero;
-
+        do {
+            System.out.println(mensaje);
+            numero = teclado.nextInt();
+        }while (numero<minimo||numero>maximo);
         return numero;
     }
 
@@ -62,14 +69,14 @@ public class Utilidades {
      * @return char letra
      */
     public static char leerLetra(Scanner teclado, String mensaje, char minimo, char maximo) {
-        char letra;
-
-
-
-        return letra;
+        char c;
+        do {
+            System.out.println(mensaje);
+            String s = teclado.next();
+            c = s.charAt(0);
+        }while (c<minimo||c>maximo);
+        return c;
     }
-
-
     /**
      * TODO: Solicita una fecha repetidamente hasta que se introduzca una correcta
      * @param teclado
@@ -80,9 +87,21 @@ public class Utilidades {
         int dia;
         int mes;
         int anio;
-
-
-
+        boolean continuar = false;
+        do {
+            System.out.println(mensaje);
+            dia= teclado.nextInt();
+            mes= teclado.nextInt();
+            anio= teclado.nextInt();
+            if((mes ==1||mes ==3||mes ==5||mes ==7||mes ==8||mes ==10||mes ==12)&&dia<=31)
+                continuar=true;
+            else if ((mes ==4||mes ==6||mes ==9||mes ==11)&&dia<=30)
+                continuar=true;
+            else if(mes==2&&anio%4==0&&dia<=29)
+                continuar=true;
+            else if(mes==2&&dia<=28)
+                continuar=true;
+        }while (!continuar);
         return new Fecha(dia, mes, anio);
     }
 
@@ -100,8 +119,25 @@ public class Utilidades {
         int hora;
         int minuto;
         int segundo;
-
-
+        boolean continuar = false;
+        do {
+            System.out.println(mensaje);
+            dia= teclado.nextInt();
+            mes= teclado.nextInt();
+            anio= teclado.nextInt();
+            hora=teclado.nextInt();
+            minuto=teclado.nextInt();
+            segundo=teclado.nextInt();
+            if((mes ==1||mes ==3||mes ==5||mes ==7||mes ==8||mes ==10||mes ==12)&&dia<=31)
+                continuar=true;
+            else if ((mes ==4||mes ==6||mes ==9||mes ==11)&&dia<=30)
+                continuar=true;
+            else if(mes==2&&anio%4==0&&dia<=29)
+                continuar=true;
+            else if(mes==2&&dia<=28)
+                continuar=true;
+            if (hora>24||minuto>60||)
+        }while (!continuar);
 
         return new Fecha(dia, mes, anio, hora, minuto, segundo);
     }
