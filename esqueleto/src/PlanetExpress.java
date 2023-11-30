@@ -168,11 +168,9 @@ public class PlanetExpress {
             opcion = menu(teclado);
             switch (opcion) {
                 case 1:     // TODO: Alta de Porte
-                    buscarPorte(teclado);
 
                     break;
                 case 2:     // TODO: Alta de Cliente
-
 
                     break;
                 case 3:     // TODO: Buscar Porte
