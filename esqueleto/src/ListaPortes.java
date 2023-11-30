@@ -73,7 +73,14 @@ public class ListaPortes {
      * @return
      */
     public ListaPortes buscarPortes(String codigoOrigen, String codigoDestino, Fecha fecha) {
-        ListaPortes listaPortes =null;
+        int capacidad = 0;
+        for (int i=0;i<capacidad;i++)
+            if (portes[i].getOrigen().getCodigo()==codigoOrigen&&portes[i].getDestino().getCodigo()==codigoDestino)
+                capacidad++;
+        ListaPortes listaPortes = new ListaPortes(capacidad);
+        for (int i=0;i<capacidad;i++)
+            if (portes[i].getOrigen().getCodigo()==codigoOrigen&&portes[i].getDestino().getCodigo()==codigoDestino)
+                listaPortes.insertarPorte(portes[i]);
         return listaPortes;
     }
 

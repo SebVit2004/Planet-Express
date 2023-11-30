@@ -132,12 +132,10 @@ public class PlanetExpress {
                 "3. Buscar Porte\n" +
                 "4. Mostrar envíos de un cliente\n" +
                 "5. Generar lista de envíos\n" +
-                "0. Salir\n");
-        int opcion;
-        do {
-            System.out.print("Seleccione opcion: ");
-            opcion= teclado.nextInt();
-        }while (opcion>5||opcion<0);
+                "0. Salir\n" +
+                "Seleccione opcion: ");
+        int opcion = teclado.nextInt();
+        System.out.print("Seleccione opcion: ");
         return opcion;
     }
 
@@ -159,18 +157,18 @@ public class PlanetExpress {
      * En el caso de que no se reciban exactamente estos argumentos, el programa mostrará el siguiente mensaje
      * y concluirá la ejecución del mismo: `Número de argumentos incorrecto`.
      */
-    public static void main(String[] args) {
+    public void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
         if (args.length != 10) {
             System.out.println("Número de argumentos incorrecto");
             return;
         }
-
-
+        int opcion;
         do {
             opcion = menu(teclado);
             switch (opcion) {
                 case 1:     // TODO: Alta de Porte
-
+                    buscarPorte(teclado);
 
                     break;
                 case 2:     // TODO: Alta de Cliente
