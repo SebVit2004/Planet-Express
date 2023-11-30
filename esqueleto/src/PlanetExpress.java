@@ -34,6 +34,11 @@ public class PlanetExpress {
         this.maxPortes=maxPortes;
         this.maxClientes=maxClientes;
         this.maxEnviosPorCliente=maxEnviosPorCliente;
+        ListaPuertosEspaciales
+        listaPuertosEspaciales = new ListaPuertosEspaciales(maxPuertosEspaciales);
+        listaNaves = new ListaNaves(maxNaves);
+        listaClientes = new ListaClientes(maxClientes);
+        listaPortes = new ListaPortes(maxPortes);
     }
 
 
@@ -88,10 +93,12 @@ public class PlanetExpress {
      * @param teclado
      * @return
      */
-    public ListaPortes buscarPorte(Scanner teclado) {
-
-
-
+    public ListaPortes buscarPorte(Scanner sc) {
+        System.out.print("\nInserte codigo origen: ");
+        String codigoOrigen = sc.next();
+        System.out.print("\nInserte codigo destino: ");
+        String codigoDestino = sc.next();
+        Fecha fecha = Utilidades.leerFecha(sc,"\nInserte fecha: ");
         return listaPortes.buscarPortes(codigoOrigen, codigoDestino, fecha);
     }
 
@@ -121,7 +128,16 @@ public class PlanetExpress {
      * @return opción seleccionada
      */
     public static int menu(Scanner teclado) {
-
+        System.out.println("1. Alta de Porte\n" +
+                "2. Alta de Cliente\n" +
+                "3. Buscar Porte\n" +
+                "4. Mostrar envíos de un cliente\n" +
+                "5. Generar lista de envíos\n" +
+                "0. Salir\n" +
+                "Seleccione opcion: ");
+        int opcion = teclado.nextInt();
+        System.out.print("Seleccione opcion: ");
+        return opcion;
     }
 
     /**
@@ -142,22 +158,20 @@ public class PlanetExpress {
      * En el caso de que no se reciban exactamente estos argumentos, el programa mostrará el siguiente mensaje
      * y concluirá la ejecución del mismo: `Número de argumentos incorrecto`.
      */
-    public static void main(String[] args) {
+    public void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
         if (args.length != 10) {
             System.out.println("Número de argumentos incorrecto");
             return;
         }
-
-
+        int opcion;
         do {
             opcion = menu(teclado);
             switch (opcion) {
                 case 1:     // TODO: Alta de Porte
 
-
                     break;
                 case 2:     // TODO: Alta de Cliente
-
 
                     break;
                 case 3:     // TODO: Buscar Porte

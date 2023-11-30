@@ -11,23 +11,24 @@ import java.util.Scanner;
  */
 public class ListaPortes {
     private Porte[] portes;
+    private int ocupacion=0;
     /**
      * TODO: Constructor de la clase para inicializar la lista a una capacidad determinada
      *
      * @param capacidad
      */
     public ListaPortes(int capacidad) {
-        
-		
-		
+        portes = new Porte[capacidad];
     }
     // TODO: Devuelve el número de portes que hay en la lista
     public int getOcupacion() {
-
+        return ocupacion;
     }
     // TODO: ¿Está llena la lista?
     public boolean estaLlena() {
-
+        if (ocupacion==portes.length)
+            return true;
+        return false;
     }
 
 	//TODO: devuelve un porte dado un indice
@@ -42,7 +43,11 @@ public class ListaPortes {
      * @return false en caso de estar llena la lista o de error
      */
     public boolean insertarPorte(Porte porte) {
-
+        if (!estaLlena()){
+            portes[ocupacion]=porte;
+            ocupacion++;
+            return true;
+        }
         return false;
     }
 
@@ -53,7 +58,9 @@ public class ListaPortes {
      * @return el objeto Porte que encontramos o null si no existe
      */
     public Porte buscarPorte(String id) {
-
+        for (int i=0;i<ocupacion;i++)
+            if (id==portes[i].getID())
+                return portes[i];
         return null;
     }
 
@@ -66,8 +73,14 @@ public class ListaPortes {
      * @return
      */
     public ListaPortes buscarPortes(String codigoOrigen, String codigoDestino, Fecha fecha) {
-        
-
+        int capacidad = 0;
+        for (int i=0;i<capacidad;i++)
+            if (portes[i].getOrigen().getCodigo()==codigoOrigen&&portes[i].getDestino().getCodigo()==codigoDestino)
+                capacidad++;
+        ListaPortes listaPortes = new ListaPortes(capacidad);
+        for (int i=0;i<capacidad;i++)
+            if (portes[i].getOrigen().getCodigo()==codigoOrigen&&portes[i].getDestino().getCodigo()==codigoDestino)
+                listaPortes.insertarPorte(portes[i]);
         return listaPortes;
     }
 
@@ -75,9 +88,9 @@ public class ListaPortes {
      * TODO: Muestra por pantalla los Portes siguiendo el formato de los ejemplos del enunciado
      */
     public void listarPortes() {
-
+        for (int i=0;i<ocupacion;i++)
+            System.out.println(portes[i].toString());
     }
-
 
     /**
      * TODO: Permite seleccionar un Porte existente a partir de su ID, usando el mensaje pasado como argumento para
@@ -90,6 +103,7 @@ public class ListaPortes {
      * @return
      */
     public Porte seleccionarPorte(Scanner teclado, String mensaje, String cancelar) {
+
         listarPortes();
         Porte porte = null;
 
