@@ -34,6 +34,7 @@ public class PlanetExpress {
         this.maxPortes=maxPortes;
         this.maxClientes=maxClientes;
         this.maxEnviosPorCliente=maxEnviosPorCliente;
+        ListaPuertosEspaciales
         listaPuertosEspaciales = new ListaPuertosEspaciales(maxPuertosEspaciales);
         listaNaves = new ListaNaves(maxNaves);
         listaClientes = new ListaClientes(maxClientes);
