@@ -3,8 +3,8 @@ import java.util.Scanner;
 /**
  * Description of the class
  *
- * @author Taller de Programación
- * @version     1.0
+ * @author Sebastian Vitiello
+ * @version     1.1
  */
 public class Cliente {
     private final ListaEnvios listaEnvios;
