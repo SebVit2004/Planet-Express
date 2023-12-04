@@ -12,8 +12,8 @@ public class PlanetExpress {
     private final int maxNaves;
     private final int maxClientes;
     private final int maxEnviosPorCliente;
-    private ListaPuertosEspaciales listaPuertosEspaciales;
     private final int maxPuertosEspaciales;
+    private ListaPuertosEspaciales listaPuertosEspaciales;
     private ListaNaves listaNaves;
     private ListaClientes listaClientes;
     private ListaPortes listaPortes;
