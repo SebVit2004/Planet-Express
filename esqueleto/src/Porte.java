@@ -263,6 +263,8 @@ public class Porte {
         }while (!cont);
 
         precio = Utilidades.leerNumero(sc, "",0.0,99999999);
+        if (precio<0)
+            return null;
         id = generarID(rand);
         return new Porte(id, nave1, origen, muelleOrigen, salida, destino, muelleDestino, llegada, precio);
     }

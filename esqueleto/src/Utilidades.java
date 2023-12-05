@@ -162,31 +162,36 @@ public class Utilidades {
         do {
             try {
                 System.out.println(mensaje);
+                System.out.print("Ingrese dia: ");
                 String diaString = teclado.next();
                 if (diaString.equalsIgnoreCase("cancelar"))
                     return null;
                 dia = Integer.parseInt(diaString);
+                System.out.print("Ingrese mes: ");
                 String mesString = teclado.next();
                 if (mesString.equalsIgnoreCase("cancelar"))
                     return null;
                 mes = Integer.parseInt(mesString);
+                System.out.print("Ingrese año: ");
                 String anioString = teclado.next();
                 if (anioString.equalsIgnoreCase("cancelar"))
                     return null;
                 anio = Integer.parseInt(anioString);
-
+                System.out.print("Ingrese hora: ");
                 String horaString = teclado.next();
                 if (horaString.equalsIgnoreCase("cancelar"))
                     return null;
                 hora=Integer.parseInt(horaString);
+                System.out.print("Ingrese minuto: ");
                 String minutoString = teclado.next();
                 if (minutoString.equalsIgnoreCase("cancelar"))
                     return null;
                 minuto=Integer.parseInt(minutoString);
+                System.out.print("Ingrese segundo: ");
                 String segundoString = teclado.next();
                 if (segundoString.equalsIgnoreCase("cancelar"))
                     return null;
-                minuto=Integer.parseInt(minutoString);
+                segundo=Integer.parseInt(segundoString);
                 if ((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && dia <= 31)
                     continuar = true;
                 else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia <= 30)
