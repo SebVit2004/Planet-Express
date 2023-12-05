@@ -70,7 +70,7 @@ public class ListaNaves {
      * @param alcance
      * @return
      */
-    public Nave seleccionarNave(Scanner teclado, String mensaje, double alcance) {
+    public Nave seleccionarNave(Scanner teclado, String mensaje, double alcance) { //return null si "cancelar"
         Nave nave = null;
 
 

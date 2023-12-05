@@ -42,7 +42,6 @@ public class ListaPortes {
      * @return false en caso de estar llena la lista o de error
      */
     public boolean insertarPorte(Porte porte) {
-
         if (estaLlena()) {
             return false;
         }

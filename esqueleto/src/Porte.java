@@ -186,7 +186,7 @@ public class Porte {
      * @param rand
      * @return ejemplo -> "PM0123"
      */
-    public static String generarID(Random rand) {
+    public String generarID(Random rand) {
         return "PM"+ (rand);
     }
 
@@ -202,9 +202,8 @@ public class Porte {
      * @param portes
      * @return
      */
-    public static Porte altaPorte(Scanner teclado, Random rand, ListaPuertosEspaciales puertosEspaciales, ListaNaves naves, ListaPortes portes) {
+    public Porte altaPorte(Scanner teclado, Random rand, ListaPuertosEspaciales puertosEspaciales, ListaNaves naves, ListaPortes portes) {
         Scanner sc = new Scanner(System.in);
-        //String id, Nave nave, PuertoEspacial origen, int muelleOrigen, Fecha salida, PuertoEspacial destino, int muelleDestino, Fecha llegada, double precio
         String id;
         Nave nave1;
         PuertoEspacial origen = null;
@@ -217,10 +216,13 @@ public class Porte {
         boolean cont=false;
         do {
             String codigoPuertoOrigen = Utilidades.leerCadena(sc, "Ingrese código de puerto Origen: ");
+            
             if (puertosEspaciales.buscarPuertoEspacial(codigoPuertoOrigen)!=null){
                 origen=puertosEspaciales.buscarPuertoEspacial(codigoPuertoOrigen);
                 cont=true;
-            }else
+            } else if (codigoPuertoOrigen.equalsIgnoreCase("cancelar")) {
+                return null;
+            } else
                 System.out.println("Código de puerto no encontrado.");
         }while (!cont);
         muelleOrigen = Utilidades.leerNumero(sc, "Ingrese el muelle de Origen (1 - "+origen.getMuelles()+"):", 1, origen.getMuelles());
@@ -231,19 +233,29 @@ public class Porte {
             if (puertosEspaciales.buscarPuertoEspacial(codigoPuertoDestino)!=null){
                 cont=true;
                 destino=puertosEspaciales.buscarPuertoEspacial(codigoPuertoDestino);
+            }else if (codigoPuertoDestino.equalsIgnoreCase("cancelar")) {
+                return null;
             }else {
                 System.out.println("Código de puerto no encontrado.");
             }
         }while (!cont);
         muelleDestino = Utilidades.leerNumero(sc, "Ingrese el Terminal Destino (1 - "+destino.getMuelles()+"):", 1, destino.getMuelles());
+        if (muelleDestino<1)
+            return null;
 
         naves.mostrarNaves();
         nave1 = naves.seleccionarNave(sc, "Ingrese matrícula de la nave: ", origen.distancia(destino));
+        if (nave1==null)
+            return null;
 
         cont = false;
         do {
             salida=Utilidades.leerFechaHora(sc, "Introduzca la fecha de salida");
+            if (salida == null)
+                return null;
             llegada=Utilidades.leerFechaHora(sc, "Introduzca la fecha de llegada");
+            if (llegada == null)
+                return null;
             if(salida.anterior(llegada))
                 cont=true;
             else
@@ -252,6 +264,6 @@ public class Porte {
 
         precio = Utilidades.leerNumero(sc, "",0.0,99999999);
         id = generarID(rand);
-        return Porte(id, nave1, origen, muelleOrigen, salida, destino, muelleDestino, llegada, precio);
+        return new Porte(id, nave1, origen, muelleOrigen, salida, destino, muelleDestino, llegada, precio);
     }
 }

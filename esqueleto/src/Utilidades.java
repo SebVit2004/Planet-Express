@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -18,11 +20,19 @@ public class Utilidades {
      * @return int numero
      */
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
-        int numero;
+        int numero = minimo-1;
         do {
             System.out.println(mensaje);
-            numero = teclado.nextInt();
-        }while (numero<minimo||numero>maximo);
+            try {
+                String numeroString = teclado.next();
+                if(numeroString.equalsIgnoreCase("cancelar")){
+                    return minimo-1;
+                }
+                numero = Integer.parseInt(numeroString);
+            }catch (InputMismatchException e){
+                System.out.println(e);
+            }
+        } while (numero < minimo || numero > maximo);
         return numero;
     }
 
@@ -35,11 +45,19 @@ public class Utilidades {
      * @return long numero
      */
     public static long leerNumero(Scanner teclado, String mensaje, long minimo, long maximo) {
-        long numero;
+        long numero = minimo-1;
         do {
             System.out.println(mensaje);
-            numero = teclado.nextInt();
-        }while (numero<minimo||numero>maximo);
+            try {
+                String numeroString = teclado.next();
+                if(numeroString.equalsIgnoreCase("cancelar")){
+                    return minimo-1;
+                }
+                numero = Integer.parseInt(numeroString);
+            }catch (InputMismatchException e){
+                System.out.println(e);
+            }
+        } while (numero < minimo || numero > maximo);
         return numero;
     }
 
@@ -52,11 +70,19 @@ public class Utilidades {
      * @return double numero
      */
     public static double leerNumero(Scanner teclado, String mensaje, double minimo, double maximo) {
-        double numero;
+        double numero = minimo-1;
         do {
             System.out.println(mensaje);
-            numero = teclado.nextInt();
-        }while (numero<minimo||numero>maximo);
+            try {
+                String numeroString = teclado.next();
+                if(numeroString.equalsIgnoreCase("cancelar")){
+                    return minimo-1;
+                }
+                numero = Integer.parseInt(numeroString);
+            }catch (InputMismatchException e){
+                System.out.println(e);
+            }
+        } while (numero < minimo || numero > maximo);
         return numero;
     }
 
@@ -84,23 +110,36 @@ public class Utilidades {
      * @return Fecha
      */
     public static Fecha leerFecha(Scanner teclado, String mensaje) {
-        int dia;
-        int mes;
-        int anio;
+        int dia=0;
+        int mes=0;
+        int anio=0;
         boolean continuar = false;
         do {
-            System.out.println(mensaje);
-            dia= teclado.nextInt();
-            mes= teclado.nextInt();
-            anio= teclado.nextInt();
-            if((mes ==1||mes ==3||mes ==5||mes ==7||mes ==8||mes ==10||mes ==12)&&dia<=31)
-                continuar=true;
-            else if ((mes ==4||mes ==6||mes ==9||mes ==11)&&dia<=30)
-                continuar=true;
-            else if(mes==2&&anio%4==0&&dia<=29)
-                continuar=true;
-            else if(mes==2&&dia<=28)
-                continuar=true;
+            try {
+                System.out.println(mensaje);
+                String diaString = teclado.next();
+                if (diaString.equalsIgnoreCase("cancelar"))
+                    return null;
+                dia = Integer.parseInt(diaString);
+                String mesString = teclado.next();
+                if (mesString.equalsIgnoreCase("cancelar"))
+                    return null;
+                mes = Integer.parseInt(mesString);
+                String anioString = teclado.next();
+                if(anioString.equalsIgnoreCase("cancelar"))
+                    return null;
+                anio=Integer.parseInt(anioString);
+                if ((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && dia <= 31)
+                    continuar = true;
+                else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia <= 30)
+                    continuar = true;
+                else if (mes == 2 && anio % 4 == 0 && dia <= 29)
+                    continuar = true;
+                else if (mes == 2 && dia <= 28)
+                    continuar = true;
+            }catch (InputMismatchException e){
+                System.out.println(e);
+            }
         }while (!continuar);
         return new Fecha(dia, mes, anio);
     }
@@ -113,31 +152,56 @@ public class Utilidades {
      * @return Fecha
      */
     public static Fecha leerFechaHora(Scanner teclado, String mensaje) {
-        int dia;
-        int mes;
-        int anio;
-        int hora;
-        int minuto;
-        int segundo;
+        int dia=0;
+        int mes=0;
+        int anio=0;
+        int hora=0;
+        int minuto=0;
+        int segundo=0;
         boolean continuar = false;
         do {
-            System.out.println(mensaje);
-            dia= teclado.nextInt();
-            mes= teclado.nextInt();
-            anio= teclado.nextInt();
-            hora=teclado.nextInt();
-            minuto=teclado.nextInt();
-            segundo=teclado.nextInt();
-            if((mes ==1||mes ==3||mes ==5||mes ==7||mes ==8||mes ==10||mes ==12)&&dia<=31)
-                continuar=true;
-            else if ((mes ==4||mes ==6||mes ==9||mes ==11)&&dia<=30)
-                continuar=true;
-            else if(mes==2&&anio%4==0&&dia<=29)
-                continuar=true;
-            else if(mes==2&&dia<=28)
-                continuar=true;
-            if (hora>24||minuto>60||segundo>60)
+            try {
+                System.out.println(mensaje);
+                String diaString = teclado.next();
+                if (diaString.equalsIgnoreCase("cancelar"))
+                    return null;
+                dia = Integer.parseInt(diaString);
+                String mesString = teclado.next();
+                if (mesString.equalsIgnoreCase("cancelar"))
+                    return null;
+                mes = Integer.parseInt(mesString);
+                String anioString = teclado.next();
+                if (anioString.equalsIgnoreCase("cancelar"))
+                    return null;
+                anio = Integer.parseInt(anioString);
+
+                String horaString = teclado.next();
+                if (horaString.equalsIgnoreCase("cancelar"))
+                    return null;
+                hora=Integer.parseInt(horaString);
+                String minutoString = teclado.next();
+                if (minutoString.equalsIgnoreCase("cancelar"))
+                    return null;
+                minuto=Integer.parseInt(minutoString);
+                String segundoString = teclado.next();
+                if (segundoString.equalsIgnoreCase("cancelar"))
+                    return null;
+                minuto=Integer.parseInt(minutoString);
+                if ((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && dia <= 31)
+                    continuar = true;
+                else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia <= 30)
+                    continuar = true;
+                else if (mes == 2 && anio % 4 == 0 && dia <= 29)
+                    continuar = true;
+                else if (mes == 2 && dia <= 28)
+                    continuar = true;
+
+                if (hora > 24 || minuto > 60 || segundo > 60)
+                    continuar = false;
+            }catch (InputMismatchException e){
+                System.out.println(e);
                 continuar=false;
+            }
         }while (!continuar);
 
         return new Fecha(dia, mes, anio, hora, minuto, segundo);

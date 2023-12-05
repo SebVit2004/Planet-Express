@@ -160,6 +160,7 @@ public class PlanetExpress {
      */
     public void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
+        Random rand = new Random();
         if (args.length != 10) {
             System.out.println("Número de argumentos incorrecto");
             return;
@@ -169,7 +170,7 @@ public class PlanetExpress {
             opcion = menu(teclado);
             switch (opcion) {
                 case 1:     // TODO: Alta de Porte
-
+                    listaPortes.getPorte(1).altaPorte(teclado, rand, listaPuertosEspaciales, listaNaves, listaPortes);
                     break;
                 case 2:     // TODO: Alta de Cliente
 
